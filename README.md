@@ -10,7 +10,9 @@
 	2. See button presses, joystick movements, and trigger pulls directly on your screen.
 	3. Test the functionality and responsiveness of your Xbox controllers.
 	4. Enjoy a user-friendly interface for an engaging interaction with your controller.
-	
+ 
+  I still need to calibrate with more precision the analogs. I also want to add a pressure measurement in the triggers.
+ 
  ## License
     This project is licensed under the MIT License - see the LICENSE.md file for details.
 
