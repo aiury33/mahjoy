@@ -1,4 +1,6 @@
-﻿namespace mahjoy
+﻿using SharpDX.XInput;
+
+namespace mahjoy
 {
     partial class Main
     {
@@ -41,6 +43,8 @@
             lblL1 = new Label();
             pnlR1 = new Panel();
             lblR1 = new Label();
+            pb1 = new CustomColorProgressBar(Color.Violet);
+            pb2 = new CustomColorProgressBar(Color.Violet);
             picController = new PictureBox();
             tblMain.SuspendLayout();
             pnlHeader.SuspendLayout();
@@ -101,6 +105,8 @@
             // 
             // pnlCenter
             // 
+            pnlCenter.Controls.Add(pb2);
+            pnlCenter.Controls.Add(pb1);
             pnlCenter.Controls.Add(pnlR2);
             pnlCenter.Controls.Add(pnlL2);
             pnlCenter.Controls.Add(pnlL1);
@@ -112,6 +118,22 @@
             pnlCenter.Name = "pnlCenter";
             pnlCenter.Size = new Size(932, 531);
             pnlCenter.TabIndex = 5;
+            // 
+            // pb2
+            // 
+            pb2.Location = new Point(551, 9);
+            pb2.Maximum = 255;
+            pb2.Name = "pb2";
+            pb2.Size = new Size(115, 20);
+            pb2.TabIndex = 10;
+            // 
+            // pb1
+            // 
+            pb1.Location = new Point(273, 9);
+            pb1.Maximum = 255;
+            pb1.Name = "pb1";
+            pb1.Size = new Size(115, 20);
+            pb1.TabIndex = 9;
             // 
             // pnlR2
             // 
@@ -229,6 +251,38 @@
             ResumeLayout(false);
         }
 
+        private void InitializeControllerComponents(ref List<ButtonRepresentation> buttons, ref List<AnalogStickRepresentation> sticks)
+        {
+            Size sizeMainButtons = new Size(44, 44);
+            Size sizeSideButtons = new Size(30, 30);
+            Size sizeHorizontalArrow = new Size(27, 31);
+            Size sizeVerticalArrow = new Size(31, 27);
+            Size sizeThumb = new Size(68, 68);
+
+            buttons = new List<ButtonRepresentation> { };
+            sticks = new List<AnalogStickRepresentation> { };
+
+            buttons.Add(new ButtonRepresentation(new Point(408, 106), sizeMainButtons, GamepadButtonFlags.X, Color.Violet));
+            buttons.Add(new ButtonRepresentation(new Point(451, 149), sizeMainButtons, GamepadButtonFlags.A, Color.Violet));
+            buttons.Add(new ButtonRepresentation(new Point(451, 63), sizeMainButtons, GamepadButtonFlags.Y, Color.Violet));
+            buttons.Add(new ButtonRepresentation(new Point(491, 106), sizeMainButtons, GamepadButtonFlags.B, Color.Violet));
+
+            buttons.Add(new ButtonRepresentation(new Point(343, 112), sizeSideButtons, GamepadButtonFlags.Start, Color.Violet));
+            buttons.Add(new ButtonRepresentation(new Point(251, 112), sizeSideButtons, GamepadButtonFlags.Back, Color.Violet));
+
+            buttons.Add(new ButtonRepresentation(new Point(193, 212), sizeHorizontalArrow, GamepadButtonFlags.DPadLeft, Color.Violet));
+            buttons.Add(new ButtonRepresentation(new Point(248, 212), sizeHorizontalArrow, GamepadButtonFlags.DPadRight, Color.Violet));
+
+            buttons.Add(new ButtonRepresentation(new Point(218, 186), sizeVerticalArrow, GamepadButtonFlags.DPadUp, Color.Violet));
+            buttons.Add(new ButtonRepresentation(new Point(218, 242), sizeVerticalArrow, GamepadButtonFlags.DPadDown, Color.Violet));
+
+            buttons.Add(new ButtonRepresentation(new Point(123, 95), sizeThumb, GamepadButtonFlags.LeftThumb, Color.Thistle));
+            buttons.Add(new ButtonRepresentation(new Point(359, 191), sizeThumb, GamepadButtonFlags.RightThumb, Color.Thistle));
+
+            sticks.Add(new AnalogStickRepresentation(new Rectangle(123, 95, 68, 68)));
+            sticks.Add(new AnalogStickRepresentation(new Rectangle(359, 191, 68, 68)));
+        }
+
         #endregion
         private TableLayoutPanel tblMain;
         private Panel pnlHeader;
@@ -244,5 +298,7 @@
         private Label lblL2;
         private Panel pnlR2;
         private Label lblR2;
+        private CustomColorProgressBar pb1;
+        private CustomColorProgressBar pb2;
     }
 }
